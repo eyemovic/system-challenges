@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  nginx-reverse-proxy:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - aaa
+      - bbb
+
+  aaa:
+    image: nginx:latest
+    expose:
+      - "80"
+    volumes:
+      - ./aaa:/usr/share/nginx/html
+
+  bbb:
+    image: nginx:latest
+    expose:
+      - "80"
+    volumes:
+      - ./bbb:/usr/share/nginx/html
