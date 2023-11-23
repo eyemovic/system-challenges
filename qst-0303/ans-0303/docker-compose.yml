@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  reverseproxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - aaa
+      - bbb
+
+  aaa:
+    image: nginx:latest
+    volumes:
+      - ./aaa:/usr/share/nginx/aaa
+
+  bbb:
+    image: nginx:latest
+    volumes:
+      - ./bbb:/usr/share/nginx/bbb
