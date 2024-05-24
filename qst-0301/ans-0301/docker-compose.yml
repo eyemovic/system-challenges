@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - 3000:80
+  app:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    volumes:
+     - ./src/index.html:/var/www/html 
